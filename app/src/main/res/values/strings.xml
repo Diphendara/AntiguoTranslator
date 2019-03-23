@@ -3,4 +3,9 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="TextToAntiguo">Text to Antiguo</string>
+    <string name="example_text">example text</string>
+    <string name="to_antiguo">To Antiguo</string>
+    <string name="to_text">To Text</string>
+    <string name="numbers">Numbers</string>
 </resources>
