@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+    <LinearLayout
+        android:id="@+id/customButtonLayout"
+        android:layout_height="70dp"
+        android:layout_width="40dp"
+        style="@android:style/Widget.Button"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/antiguoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/antiguo_jesulink"
+            android:text="@string/example_text"
+            android:textColor="#000"
+            android:textSize="30sp" />
+    </LinearLayout>
+</LinearLayout>
