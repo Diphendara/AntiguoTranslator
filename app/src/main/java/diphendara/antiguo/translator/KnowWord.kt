@@ -1,6 +1,3 @@
 package diphendara.antiguo.translator
 
-class KnowWord(value: String, antiguoValue: String) {
-    var value: String = value
-    var antiguoValue: String = antiguoValue
-}
+class KnowWord(var value: String, var antiguoValue: String)

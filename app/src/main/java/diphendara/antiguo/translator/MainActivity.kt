@@ -6,7 +6,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import android.text.Editable
 import android.text.TextWatcher
 
-
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,18 +66,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     //For this method can be added a lot of more special cases
-    //TODO this not works yet
-    private fun replaceSpecialCases(inputText: String): String {
-        inputText.replace("[àáä]", "a")
-        inputText.replace("[èéë]", "e")
-        inputText.replace("[ìíï]", "i")
-        inputText.replace("[òóöõ]", "o")
-        inputText.replace("[ùúü]", "u")
-        inputText.replace("[ÿý]", "y")
-        inputText.replace("ñ", "n")
-        inputText.replace("ç", "c")
+     private fun replaceSpecialCases(inputText: String): String {
 
-        return inputText
+        var cleanText: String = inputText
+
+        val regexArray = arrayOf(
+            RegexReplace(Regex("[àáäã]"), "a"),
+            RegexReplace(Regex("[èéë]"), "e"),
+            RegexReplace(Regex("[ìíï]"), "i"),
+            RegexReplace(Regex("[òóöõ]"), "o"),
+            RegexReplace(Regex("[ùúü]"), "u"),
+            RegexReplace(Regex("[ÿý]"), "y"),
+            RegexReplace(Regex("ñ"), "n"),
+            RegexReplace(Regex("ç"), "c")
+        )
+
+        for (regexObj in regexArray) {
+            val regex = regexObj.regex
+            cleanText = regex.replace(cleanText, regexObj.replace)
+        }
+
+        return cleanText
     }
 
     private fun getKnownWords(): Array<KnowWord> {
