@@ -1,4 +1,4 @@
-package diphendara.antiguo.translator
+package diphendara.antiguo.translator.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -7,6 +7,9 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import diphendara.antiguo.translator.R
+import diphendara.antiguo.translator.dataObjects.KnowWord
+import diphendara.antiguo.translator.dataObjects.RegexReplace
 import kotlinx.android.synthetic.main.text_fragment_tab0.*
 
 class TextFragment : Fragment() {
