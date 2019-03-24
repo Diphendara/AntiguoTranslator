@@ -12,7 +12,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         inputText.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable) {
@@ -30,13 +29,20 @@ class MainActivity : AppCompatActivity() {
     {
         var cleanText = replaceSpecialCases(inputText.toLowerCase())
 
-        for (word in getKnownWords()) {
-            if(word.value == cleanText) {
-                cleanText = cleanText.replace(word.value, word.antiguoValue)
-            }
-        }
+        cleanText = replaceKnownWords(cleanText)
 
         return replaceConsonantsWithA(cleanText)
+    }
+
+    private fun replaceKnownWords(inputText: String): String
+    {
+        var cleanText = inputText
+
+        for (word in getKnownWords()) {
+            cleanText = cleanText.replace(word.value, word.antiguoValue)
+        }
+
+        return cleanText
     }
 
     private fun replaceConsonantsWithA(inputText: String): String
