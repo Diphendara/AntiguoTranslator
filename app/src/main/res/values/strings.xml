@@ -11,4 +11,5 @@
     <string name="number_example">01234</string>
     <string name="number_tab">Numbers</string>
     <string name="text_tab">Text</string>
+    <string name="number_to_long">Number too longer</string>
 </resources>
