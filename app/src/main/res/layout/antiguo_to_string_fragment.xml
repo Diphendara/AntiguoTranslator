@@ -10,10 +10,12 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="580dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="151dp">
 
         <TextView
-            android:id="@+id/antiguoNumberTextView"
+            android:id="@+id/antiguoTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -21,69 +23,52 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/antiguo_jesulink"
+            android:text="@string/example_text"
             android:textSize="40sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/textTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.074" />
+            app:layout_constraintVertical_bias="0.615" />
 
         <TextView
-            android:id="@+id/textNumberTextView"
+            android:id="@+id/textTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="56dp"
             android:textSize="40sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.19" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonAntiguoTextView"
+            app:layout_constraintVertical_bias="0.133" />
 
         <RelativeLayout
+            android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
-            android:layout_height="92dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_height="399dp"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/inputNumber"
-            app:layout_constraintTop_toBottomOf="@+id/antiguoNumberTextView">
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="330dp">
 
             <GridView
-                android:id="@+id/numbersGridView"
-                android:layout_width="250dp"
-                android:layout_height="80dp"
+                android:id="@+id/simbolsGridView"
+                android:layout_width="wrap_content"
+                android:layout_height="378dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="80dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="80dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="20dp"
                 android:columnWidth="40dp"
                 android:gravity="center"
                 android:numColumns="auto_fit"
                 android:stretchMode="columnWidth" />
         </RelativeLayout>
-
-        <EditText
-            android:id="@+id/inputNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:ems="10"
-            android:inputType="number"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/antiguoNumberTextView"
-            app:layout_constraintVertical_bias="0.724" />
 
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

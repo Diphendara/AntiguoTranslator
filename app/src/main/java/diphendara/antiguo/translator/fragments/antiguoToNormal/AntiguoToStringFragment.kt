@@ -1,27 +1,37 @@
-package diphendara.antiguo.translator.fragments
+package diphendara.antiguo.translator.fragments.antiguoToNormal
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import diphendara.antiguo.translator.CustomGridAdapter
 import diphendara.antiguo.translator.R
 import diphendara.antiguo.translator.dataObjects.KnowCase
-import diphendara.antiguo.translator.parsers.Text2Antiguo
-import kotlinx.android.synthetic.main.number_fragment_tab1.*
-import kotlinx.android.synthetic.main.text_fragment_tab0.*
+import diphendara.antiguo.translator.parsers.Antiguo2Text
+import kotlinx.android.synthetic.main.antiguo_to_string_fragment.*
 
-class TextFragment : Fragment() {
+class AntiguoToStringFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.text_fragment_tab0, container, false)
+        return inflater.inflate(R.layout.antiguo_to_string_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        simbolsGridView.adapter = CustomGridAdapter(
+            context!!,
+            generateKnowCaseArray(),
+            ::setText)
+    }
 
+    private fun setText(knowCase: KnowCase)
+    {
+        antiguoTextView.append(knowCase.antiguoValue)
+        textTextView.text = Antiguo2Text.parseText(antiguoTextView.text.toString())
+    }
+
+    private fun generateKnowCaseArray(): Array<KnowCase>
+    {
         val listTexts = Array(45) { KnowCase("a", "H") }
         val normalChars = "bcdfghjklmpqrstvwxyz"
         val capitalChars = "BCDFGHJKLMPRSTVWXYZ"
@@ -47,21 +57,9 @@ class TextFragment : Fragment() {
 
         listTexts[listTexts.size-1] = KnowCase("a", "H")
 
-        simbolsGridView.adapter = CustomGridAdapter(
-            context!!,
-            listTexts,
-            textTextView,
-            antiguoTextTextView,
-            "text")
-
-        inputText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {
-                antiguoTextTextView.text = Text2Antiguo.parseText(s.toString())
-            }
-
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-        })
+        return listTexts
     }
+
+
+
 }

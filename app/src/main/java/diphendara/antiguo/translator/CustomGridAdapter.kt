@@ -8,14 +8,11 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.LinearLayout
 import diphendara.antiguo.translator.dataObjects.KnowCase
-import diphendara.antiguo.translator.parsers.Text2Antiguo
 
 class CustomGridAdapter(
     private val context: Context,
     private val gridValues: Array<KnowCase>,
-    private val antiguoTextView: TextView,
-    private val textTextView: TextView,
-    private val typeOfConversion: String
+    private val onClick: (KnowCase) -> Unit
     ) : BaseAdapter() {
 
     override fun getCount(): Int {
@@ -23,7 +20,6 @@ class CustomGridAdapter(
     }
 
     override fun getItem(position: Int): Any? {
-
         return null
     }
 
@@ -44,18 +40,16 @@ class CustomGridAdapter(
 
             val button = gridView.findViewById(R.id.customButtonLayout) as LinearLayout
 
-            val buttonAntiguoTextView = gridView.findViewById(R.id.antiguoTextView) as TextView
+            val buttonAntiguoTextView = gridView.findViewById(R.id.buttonAntiguoTextView) as TextView
             buttonAntiguoTextView.text = gridValues[position].antiguoValue
 
-            button.setOnClickListener {
-                antiguoTextView.append(gridValues[position].antiguoValue)
+            val buttonTextTextView = gridView.findViewById(R.id.buttonTextTextView) as TextView
+            buttonTextTextView.text = gridValues[position].value
 
-                if("number" == typeOfConversion ) {
-                    val totalText = antiguoTextView.text.toString() + gridValues[position].antiguoValue
-                    textTextView.text = Text2Antiguo.parseNumber(totalText)
-                } else {
-                    textTextView.append(Text2Antiguo.parseText(gridValues[position].value))
-                }
+            button.setOnClickListener{
+                System.out.print(gridValues[position].value)
+                System.out.print(gridValues[position].antiguoValue)
+                onClick(gridValues[position])
             }
 
         } else {
