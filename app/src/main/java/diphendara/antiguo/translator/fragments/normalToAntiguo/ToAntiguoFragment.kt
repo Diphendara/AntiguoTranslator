@@ -12,9 +12,14 @@ import android.widget.TextView
 import diphendara.antiguo.translator.R
 import diphendara.antiguo.translator.parsers.Text2Antiguo
 
-class ToAntiguoFragment(): Fragment() {
+class ToAntiguoFragment: Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    private var resourceEditText =  R.id.inputText
+    private var resourceAntiguoTextView = R.id.antiguoTextView4
+    private var resourceTextTextView = R.id.textTextView4
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
+    {
         var layout = arguments?.getInt("fragmentLayout")
 
         if (layout == null) {
@@ -24,21 +29,30 @@ class ToAntiguoFragment(): Fragment() {
         return inflater.inflate(layout, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        var resourceEditText = arguments?.getInt("fragmentInputText")
-        var resourceAntiguoTextView = arguments?.getInt("antiguoTextView")
-        var resourceTextTextView = arguments?.getInt("textTextView")
-
-        if (resourceEditText == null || resourceAntiguoTextView == null || resourceTextTextView == null  ) {
-            resourceEditText = R.id.inputText
-            resourceAntiguoTextView = R.id.antiguoTextView4
-            resourceTextTextView = R.id.textTextView4
-        }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+    {
+        setComponentsIdentificators()
 
         val inputText = view.findViewById<EditText>(resourceEditText)
         val antiguoTextView = view.findViewById<TextView>(resourceAntiguoTextView)
         val textTextView = view.findViewById<TextView>(resourceTextTextView)
 
+        setChangedListener(inputText, antiguoTextView, textTextView);
+    }
+
+    private fun setComponentsIdentificators()
+    {
+        if(arguments == null){
+           return
+        }
+
+        resourceEditText = arguments!!.getInt("fragmentInputText")
+        resourceAntiguoTextView = arguments!!.getInt("antiguoTextView")
+        resourceTextTextView = arguments!!.getInt("textTextView")
+    }
+
+    private fun setChangedListener(inputText: EditText, antiguoTextView: TextView, textTextView: TextView)
+    {
         inputText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
                 if(s.toString().isNotEmpty()) {
@@ -57,5 +71,4 @@ class ToAntiguoFragment(): Fragment() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
         })
     }
-
 }
