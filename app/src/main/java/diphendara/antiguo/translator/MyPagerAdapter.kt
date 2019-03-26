@@ -21,40 +21,53 @@ class MyPagerAdapter(fm: FragmentManager, private val context: Context) : Fragme
                 return AntiguoToStringFragment()
             }
             1 -> {
-                //String to Antiguo
-                val arguments = Bundle()
-                val fragment = ToAntiguoFragment()
-
-                arguments.putInt("fragmentLayout", R.layout.string_to_antiguo_fragment)
-                arguments.putInt("fragmentInputText", R.id.inputText)
-                arguments.putInt("antiguoTextView", R.id.antiguoTextView4)
-                arguments.putInt("textTextView", R.id.textTextView4)
-                arguments.putString("ToParse", "string")
-
-                fragment.arguments = arguments
-
-                return fragment
+                return toAntiguoFragment("string")
             }
             2 -> {
                 return Quinary2DecimalFragment()
             }
             3 -> {
-                //Number to Antiguo
-                val arguments = Bundle()
-                val fragment = ToAntiguoFragment()
-
-                arguments.putInt("fragmentLayout", R.layout.decimal_to_quinary_fragment)
-                arguments.putInt("fragmentInputText", R.id.dec2AntInput)
-                arguments.putInt("antiguoTextView", R.id.antiguoTextView2)
-                arguments.putInt("textTextView", R.id.textTextView2)
-                arguments.putString("ToParse", "number")
-
-                fragment.arguments = arguments
-
-                return fragment
+                return toAntiguoFragment("number")
             }
             else -> return AntiguoToStringFragment()
         }
+    }
+
+    private fun toAntiguoFragment(type: String): Fragment
+    {
+        val antFragment = ToAntiguoFragment()
+
+        if (type == "string") {
+            antFragment.arguments =  stringToAntiguoArguments()
+        } else {
+            antFragment.arguments = numberToAntiguoFragment()
+        }
+
+        return antFragment
+    }
+
+    private fun stringToAntiguoArguments(arguments: Bundle = Bundle()): Bundle
+    {
+        //String to Antiguo
+        arguments.putInt("fragmentLayout", R.layout.string_to_antiguo_fragment)
+        arguments.putInt("fragmentInputText", R.id.inputText)
+        arguments.putInt("antiguoTextView", R.id.antiguoTextView4)
+        arguments.putInt("textTextView", R.id.textTextView4)
+        arguments.putString("ToParse", "string")
+
+        return arguments
+    }
+
+    private fun numberToAntiguoFragment(arguments: Bundle = Bundle()): Bundle
+    {
+        //Number to Antiguo
+        arguments.putInt("fragmentLayout", R.layout.decimal_to_quinary_fragment)
+        arguments.putInt("fragmentInputText", R.id.dec2AntInput)
+        arguments.putInt("antiguoTextView", R.id.antiguoTextView2)
+        arguments.putInt("textTextView", R.id.textTextView2)
+        arguments.putString("ToParse", "number")
+
+        return arguments
     }
 
     override fun getPageTitle(position: Int): CharSequence {
