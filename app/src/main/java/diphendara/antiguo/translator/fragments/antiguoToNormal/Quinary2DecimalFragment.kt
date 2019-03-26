@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import diphendara.antiguo.translator.CustomGridAdapter
 import diphendara.antiguo.translator.R
 import diphendara.antiguo.translator.dataObjects.KnowCase
+import diphendara.antiguo.translator.parsers.Antiguo2Text
 import diphendara.antiguo.translator.parsers.Text2Antiguo
 import kotlinx.android.synthetic.main.antiguo_button.*
 import kotlinx.android.synthetic.main.quinary_to_decimal_fragment.*
@@ -37,7 +38,7 @@ class Quinary2DecimalFragment : Fragment() {
     private fun setText(knowCase: KnowCase)
     {
         textTextView3.append(knowCase.value)
-        buttonAntiguoTextView.text = Text2Antiguo.parseNumber(textTextView3.text.toString())
+        buttonAntiguoTextView.text = Antiguo2Text.parseNumber(textTextView3.text.toString())
     }
 
 }

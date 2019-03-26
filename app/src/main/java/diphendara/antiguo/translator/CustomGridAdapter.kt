@@ -47,8 +47,6 @@ class CustomGridAdapter(
             buttonTextTextView.text = gridValues[position].value
 
             button.setOnClickListener{
-                System.out.print(gridValues[position].value)
-                System.out.print(gridValues[position].antiguoValue)
                 onClick(gridValues[position])
             }
 

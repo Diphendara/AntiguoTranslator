@@ -33,9 +33,10 @@ class AntiguoToStringFragment : Fragment() {
     private fun generateKnowCaseArray(): Array<KnowCase>
     {
         val listTexts = Array(45) { KnowCase("a", "H") }
-        val normalChars = "bcdfghjklmpqrstvwxyz"
+        val normalChars = "bcdefghijklmnopqrstuvwxyz"
         val capitalChars = "BCDFGHJKLMPRSTVWXYZ"
-        val vowels = "eiou"
+
+        val vowelAArray = Array(1) { KnowCase("a", "H") }
 
         var generalIndex = 0
 
@@ -43,23 +44,13 @@ class AntiguoToStringFragment : Fragment() {
             listTexts[index] = KnowCase(element.toString(), element.toString())
         }
 
-        generalIndex = normalChars.length-1
+        generalIndex += normalChars.length
 
         capitalChars.toCharArray().forEachIndexed { index, element ->
-            listTexts[generalIndex+index] = KnowCase(element.toString(), element.toString())
+            listTexts[generalIndex+index] = KnowCase(element.toString().toLowerCase()+'a', element.toString())
         }
 
-        generalIndex = capitalChars.length-1 + normalChars.length-1
-
-        vowels.toCharArray().forEachIndexed { index, element ->
-            listTexts[generalIndex+index] = KnowCase(element.toString(), element.toString())
-        }
-
-        listTexts[listTexts.size-1] = KnowCase("a", "H")
-
-        return listTexts
+        return vowelAArray+listTexts
     }
-
-
 
 }

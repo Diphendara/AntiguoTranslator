@@ -6,7 +6,7 @@
     <LinearLayout
         android:id="@+id/customButtonLayout"
         android:layout_height="75dp"
-        android:layout_width="40dp"
+        android:layout_width="45dp"
         style="@android:style/Widget.Button"
         android:orientation="vertical"
         >
