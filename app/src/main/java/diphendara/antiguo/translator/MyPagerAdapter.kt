@@ -4,10 +4,9 @@ import android.content.Context
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import diphendara.antiguo.translator.fragments.antiguoToNormal.Quinary2DecimalFragment
-import diphendara.antiguo.translator.fragments.antiguoToNormal.AntiguoToStringFragment
 import diphendara.antiguo.translator.fragments.normalToAntiguo.ToAntiguoFragment
 import android.os.Bundle
+import diphendara.antiguo.translator.fragments.antiguoToNormal.ToStringFragment
 
 class MyPagerAdapter(fm: FragmentManager, private val context: Context) : FragmentPagerAdapter(fm) {
 
@@ -18,19 +17,56 @@ class MyPagerAdapter(fm: FragmentManager, private val context: Context) : Fragme
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> {
-                AntiguoToStringFragment()
+                toStringFragment("string")
             }
             1 -> {
                 toAntiguoFragment("string")
             }
             2 -> {
-                Quinary2DecimalFragment()
+                toStringFragment("number")
             }
             3 -> {
                 toAntiguoFragment("number")
             }
-            else -> AntiguoToStringFragment()
+            else -> toStringFragment("string")
         }
+    }
+
+    private fun toStringFragment(type: String): Fragment
+    {
+        val antFragment = ToStringFragment()
+
+        if (type == "string") {
+            antFragment.arguments =  antiguoToStringArguments()
+        } else {
+            antFragment.arguments = antiguoToNumberFragment()
+        }
+
+        return antFragment
+    }
+
+    private fun antiguoToStringArguments(arguments: Bundle = Bundle()): Bundle
+    {
+        //Antiruo to String
+        arguments.putInt("fragmentLayout", R.layout.antiguo_to_string_fragment)
+        arguments.putInt("fragmentGridView", R.id.simbolsGridView)
+        arguments.putInt("antiguoTextView", R.id.antiguoTextView)
+        arguments.putInt("textTextView", R.id.textTextView)
+        arguments.putString("ToParse", "string")
+
+        return arguments
+    }
+
+    private fun antiguoToNumberFragment(arguments: Bundle = Bundle()): Bundle
+    {
+        //Antiguo to Number
+        arguments.putInt("fragmentLayout", R.layout.quinary_to_decimal_fragment)
+        arguments.putInt("fragmentGridView", R.id.quinaryGridView)
+        arguments.putInt("antiguoTextView", R.id.antiguoTextView3)
+        arguments.putInt("textTextView", R.id.textTextView3)
+        arguments.putString("ToParse", "number")
+
+        return arguments
     }
 
     private fun toAntiguoFragment(type: String): Fragment

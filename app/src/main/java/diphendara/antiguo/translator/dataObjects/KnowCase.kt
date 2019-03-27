@@ -26,6 +26,42 @@ class KnowCase(var value: String, var antiguoValue: String) {
 
             return knownWords
         }
+
+        fun getKnowNumbers(): Array<KnowCase>
+        {
+            val listNumbers = Array(5) { KnowCase("0", "0") }
+            val numbers = "01234"
+
+            numbers.toCharArray().forEachIndexed { index, element ->
+                listNumbers[index] = KnowCase(element.toString(), element.toString())
+            }
+
+            return listNumbers
+        }
+
+        fun getKnowLetters(): Array<KnowCase>
+        {
+            val listTexts = Array(45) { KnowCase("a", "H") }
+            val normalChars = "bcdefghijklmnopqrstuvwxyz"
+            val capitalChars = "BCDFGHJKLMPRSTVWXYZ"
+
+            val vowelAArray = Array(1) { KnowCase("a", "H") }
+
+            var generalIndex = 0
+
+            normalChars.toCharArray().forEachIndexed { index, element ->
+                listTexts[index] = KnowCase(element.toString(), element.toString())
+            }
+
+            generalIndex += normalChars.length
+
+            capitalChars.toCharArray().forEachIndexed { index, element ->
+                listTexts[generalIndex+index] = KnowCase(element.toString().toLowerCase()+'a', element.toString())
+            }
+
+            return vowelAArray+listTexts
+        }
+
     }
 }
 
