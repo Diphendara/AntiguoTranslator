@@ -18,13 +18,12 @@ class ToAntiguoFragment: Fragment() {
     private var resourceEditText =  R.id.inputText
     private var resourceAntiguoTextView = R.id.antiguoTextView4
     private var resourceTextTextView = R.id.textTextView4
+    private var layout = R.layout.string_to_antiguo_fragment
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
-        var layout = arguments?.getInt("fragmentLayout")
-
-        if (layout == null) {
-            layout = R.layout.string_to_antiguo_fragment
+        if(arguments != null){
+            layout = arguments!!.getInt("fragmentLayout")
         }
 
         return inflater.inflate(layout, container, false)

@@ -17,7 +17,8 @@ class AntiguoToStringFragment : Fragment() {
         return inflater.inflate(R.layout.antiguo_to_string_fragment, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+    {
         simbolsGridView.adapter = CustomGridAdapter(
             context!!,
             generateKnowCaseArray(),

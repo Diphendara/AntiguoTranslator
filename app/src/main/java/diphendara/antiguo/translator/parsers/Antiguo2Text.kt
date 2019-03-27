@@ -4,19 +4,6 @@ import diphendara.antiguo.translator.dataObjects.KnowCase
 
 class Antiguo2Text {
     companion object {
-        fun parseNumber(inputText: String): String
-        {
-            val number: Long = inputText.toLong()
-            val quotient = number / 10
-            val remainder = number % 10
-
-            return if (quotient.compareTo(0) == 0) {
-                remainder.toString()
-            } else {
-                parseNumber(quotient.toString()) + remainder.toString()
-            }
-        }
-
         fun parseText(inputText: String): String
         {
             val cleanText = replaceKnownWords(inputText)
