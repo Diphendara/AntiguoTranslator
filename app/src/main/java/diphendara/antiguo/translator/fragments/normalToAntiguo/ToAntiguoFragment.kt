@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import diphendara.antiguo.translator.R
+import diphendara.antiguo.translator.parsers.ParseNumber
 import diphendara.antiguo.translator.parsers.Text2Antiguo
 
 class ToAntiguoFragment: Fragment() {
@@ -59,7 +60,7 @@ class ToAntiguoFragment: Fragment() {
                     if(arguments!!.getString("ToParse") == "string") {
                         antiguoTextView.text = Text2Antiguo.parseText(s.toString())
                     } else {
-                        antiguoTextView.text = Text2Antiguo.parseNumber(s.toString())
+                        antiguoTextView.text = ParseNumber.parseNumber(s.toString(), 5)
                     }
 
                     textTextView.text = s.toString()

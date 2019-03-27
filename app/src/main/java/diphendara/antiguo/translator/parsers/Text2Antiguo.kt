@@ -5,20 +5,6 @@ import diphendara.antiguo.translator.dataObjects.RegexReplace
 
 class Text2Antiguo {
     companion object {
-
-        fun parseNumber(inputText: String): String
-        {
-            val number: Long = inputText.toLong()
-            val quotient = number / 5
-            val remainder = number % 5
-
-            return if (quotient.compareTo(0) == 0) {
-                remainder.toString()
-            } else {
-                parseNumber(quotient.toString()) + remainder.toString()
-            }
-        }
-
         fun parseText(inputText: String): String
         {
             var cleanText = replaceSpecialCases(inputText.toLowerCase())
