@@ -8,11 +8,15 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.LinearLayout
 import diphendara.antiguo.translator.dataObjects.KnowCase
+import diphendara.antiguo.translator.parsers.Antiguo2Text
+import diphendara.antiguo.translator.parsers.ParseNumber
 
-class CustomGridAdapter(
+class AntiguoGridAdapter(
     private val context: Context,
     private val gridValues: Array<KnowCase>,
-    private val onClick: (KnowCase, View) -> Unit
+    private val type: String?,
+    private val antiguoTextView: TextView,
+    private val textTextView: TextView
     ) : BaseAdapter() {
 
     override fun getCount(): Int {
@@ -47,7 +51,12 @@ class CustomGridAdapter(
             buttonTextTextView.text = gridValues[position].value
 
             button.setOnClickListener{
-                onClick(gridValues[position], it)
+                antiguoTextView.append(gridValues[position].value)
+                if("string" == type) {
+                    textTextView.text = Antiguo2Text.parseText(antiguoTextView.text.toString())
+                } else {
+                    textTextView.text = ParseNumber.parseNumber(antiguoTextView.text.toString(), 10)
+                }
             }
 
         } else {

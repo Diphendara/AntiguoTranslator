@@ -2,13 +2,10 @@ package diphendara.antiguo.translator.fragments.antiguoToNormal
 
 import android.view.View
 import android.widget.GridView
-import diphendara.antiguo.translator.CustomGridAdapter
+import diphendara.antiguo.translator.AntiguoGridAdapter
 import diphendara.antiguo.translator.R
 import diphendara.antiguo.translator.dataObjects.KnowCase
 import diphendara.antiguo.translator.fragments.CustomFragment
-import diphendara.antiguo.translator.parsers.Antiguo2Text
-import diphendara.antiguo.translator.parsers.ParseNumber
-import kotlinx.android.synthetic.main.antiguo_to_string_fragment.view.*
 
 class ToStringFragment : CustomFragment()
 {
@@ -24,27 +21,17 @@ class ToStringFragment : CustomFragment()
         val gridView = view.findViewById<GridView>(resourceGridView)
         var knowCaseArray = KnowCase.getKnowLetters()
 
-        if(arguments!!.getString("ToParse") == "number") {
+        val type = arguments!!.getString("ToParse")
+
+        if(type == "number") {
             knowCaseArray = KnowCase.getKnowNumbers()
         }
 
-        gridView.adapter = CustomGridAdapter(
+        gridView.adapter = AntiguoGridAdapter(
             context!!,
             knowCaseArray,
-            ::setText)
+            type,
+            antiguoTextView!!,
+            textTextView!!)
     }
-
-
-    private fun setText(knowCase: KnowCase, view: View)
-    {
-        System.out.println(knowCase)
-        System.out.println(view)
-        antiguoTextView!!.append(knowCase.value)
-        if(arguments!!.getString("ToParse") == "string") {
-            textTextView!!.text = Antiguo2Text.parseText(view.antiguoTextView!!.text.toString())
-        } else {
-            textTextView!!.text = ParseNumber.parseNumber(view.antiguoTextView!!.text.toString(), 10)
-        }
-    }
-
 }
