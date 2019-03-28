@@ -54,12 +54,8 @@ class KnowCase(var value: String, var antiguoValue: String) {
             val listTexts = Array(19) { KnowCase("a", "H") }
             val capitalChars = "BCDFGHJKLMPRSTVWXYZ"
 
-            var generalIndex = 0
-
-            generalIndex += normalCharsArray.size
-
             capitalChars.toCharArray().forEachIndexed { index, element ->
-                listTexts[generalIndex+index] = KnowCase(element.toString().toLowerCase()+'a', element.toString())
+                listTexts[index] = KnowCase(element.toString().toLowerCase()+'a', element.toString())
             }
 
             return vowelAArray + normalCharsArray + listTexts
