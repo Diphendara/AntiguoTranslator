@@ -12,7 +12,7 @@ import diphendara.antiguo.translator.dataObjects.KnowCase
 class CustomGridAdapter(
     private val context: Context,
     private val gridValues: Array<KnowCase>,
-    private val onClick: (KnowCase) -> Unit
+    private val onClick: (KnowCase, View) -> Unit
     ) : BaseAdapter() {
 
     override fun getCount(): Int {
@@ -47,7 +47,7 @@ class CustomGridAdapter(
             buttonTextTextView.text = gridValues[position].value
 
             button.setOnClickListener{
-                onClick(gridValues[position])
+                onClick(gridValues[position], it)
             }
 
         } else {

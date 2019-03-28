@@ -1,48 +1,31 @@
 package diphendara.antiguo.translator.fragments.antiguoToNormal
 
-import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.GridView
-import android.widget.TextView
 import diphendara.antiguo.translator.CustomGridAdapter
 import diphendara.antiguo.translator.R
 import diphendara.antiguo.translator.dataObjects.KnowCase
+import diphendara.antiguo.translator.fragments.CustomFragment
 import diphendara.antiguo.translator.parsers.Antiguo2Text
 import diphendara.antiguo.translator.parsers.ParseNumber
-import diphendara.antiguo.translator.parsers.Text2Antiguo
-import kotlinx.android.synthetic.main.antiguo_button.*
-import kotlinx.android.synthetic.main.antiguo_to_string_fragment.*
-import kotlinx.android.synthetic.main.quinary_to_decimal_fragment.*
+import kotlinx.android.synthetic.main.antiguo_to_string_fragment.view.*
 
-class ToStringFragment : Fragment() {
-
+class ToStringFragment : CustomFragment()
+{
     private var resourceGridView =  R.id.simbolsGridView
-    private var layout = R.layout.antiguo_to_string_fragment
-    private var resourceAntiguoTextView = R.id.antiguoTextView4
-    private var resourceTextTextView = R.id.textTextView4
-    private var antiguoTextView: TextView? = null
-    private var textTextView: TextView? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
+    override fun setInputComponentIdentificator()
     {
-        if(arguments != null){
-            layout = arguments!!.getInt("fragmentLayout")
+        if(arguments == null){
+            return
         }
 
-        return inflater.inflate(layout, container, false)
+        resourceGridView = arguments!!.getInt("fragmentGridView")
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+    override fun setCustomBehavoir(view: View)
     {
-        setComponentsIdentificators()
-
         val gridView = view.findViewById<GridView>(resourceGridView)
-        antiguoTextView = view.findViewById(resourceAntiguoTextView)
-        textTextView = view.findViewById(resourceTextTextView)
-
         var knowCaseArray = KnowCase.getKnowLetters()
 
         if(arguments!!.getString("ToParse") == "number") {
@@ -53,27 +36,18 @@ class ToStringFragment : Fragment() {
             context!!,
             knowCaseArray,
             ::setText)
-
     }
 
-    private fun setComponentsIdentificators()
-    {
-        if(arguments == null){
-            return
-        }
 
-        resourceGridView = arguments!!.getInt("fragmentGridView")
-        resourceAntiguoTextView = arguments!!.getInt("antiguoTextView")
-        resourceTextTextView = arguments!!.getInt("textTextView")
-    }
-
-    private fun setText(knowCase: KnowCase)
+    private fun setText(knowCase: KnowCase, view: View)
     {
+        System.out.println(knowCase)
+        System.out.println(view)
         antiguoTextView!!.append(knowCase.value)
         if(arguments!!.getString("ToParse") == "string") {
-            textTextView!!.text = Antiguo2Text.parseText(antiguoTextView!!.text.toString())
+            textTextView!!.text = Antiguo2Text.parseText(view.antiguoTextView!!.text.toString())
         } else {
-            textTextView!!.text = ParseNumber.parseNumber(antiguoTextView!!.text.toString(), 10)
+            textTextView!!.text = ParseNumber.parseNumber(view.antiguoTextView!!.text.toString(), 10)
         }
     }
 

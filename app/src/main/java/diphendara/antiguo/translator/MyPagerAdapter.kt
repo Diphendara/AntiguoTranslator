@@ -17,7 +17,8 @@ class MyPagerAdapter(fm: FragmentManager, private val context: Context) : Fragme
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> {
-                toStringFragment("string")
+                //toStringFragment("string")
+                toStringFragment("number")
             }
             1 -> {
                 toAntiguoFragment("string")
