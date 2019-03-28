@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import diphendara.antiguo.translator.R
+import java.lang.Exception
 
 abstract class CustomFragment: Fragment()
 {
@@ -26,6 +27,9 @@ abstract class CustomFragment: Fragment()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
+        if(arguments == null){
+            return
+        }
         setInputComponentIdentificator()
         setTextViewsIdentificators(view)
         setCustomBehavoir(view)

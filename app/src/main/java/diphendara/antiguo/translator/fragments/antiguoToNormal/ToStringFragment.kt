@@ -16,10 +16,6 @@ class ToStringFragment : CustomFragment()
 
     override fun setInputComponentIdentificator()
     {
-        if(arguments == null){
-            return
-        }
-
         resourceGridView = arguments!!.getInt("fragmentGridView")
     }
 

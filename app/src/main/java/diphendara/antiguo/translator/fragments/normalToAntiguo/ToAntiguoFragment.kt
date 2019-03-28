@@ -15,10 +15,6 @@ class ToAntiguoFragment: CustomFragment()
 
     override fun setInputComponentIdentificator()
     {
-        if(arguments == null){
-            return
-        }
-
         resourceEditText = arguments!!.getInt("fragmentInputText")
     }
 
