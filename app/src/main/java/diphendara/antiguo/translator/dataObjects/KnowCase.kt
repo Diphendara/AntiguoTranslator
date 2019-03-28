@@ -29,37 +29,40 @@ class KnowCase(var value: String, var antiguoValue: String) {
 
         fun getKnowNumbers(): Array<KnowCase>
         {
-            val listNumbers = Array(5) { KnowCase("0", "0") }
-            val numbers = "01234"
+            return fillList(5, KnowCase("0", "0"), "01234")
+        }
 
-            numbers.toCharArray().forEachIndexed { index, element ->
-                listNumbers[index] = KnowCase(element.toString(), element.toString())
+        private fun fillList(arraySize: Int, unitKnowCase: KnowCase, contentChars: String):Array<KnowCase>
+        {
+            val list = Array(arraySize) { unitKnowCase }
+
+            contentChars.toCharArray().forEachIndexed { index, element ->
+                list[index] = KnowCase(element.toString(), element.toString())
             }
 
-            return listNumbers
+            return list
         }
+
 
         fun getKnowLetters(): Array<KnowCase>
         {
-            val listTexts = Array(45) { KnowCase("a", "H") }
-            val normalChars = "bcdefghijklmnopqrstuvwxyz"
-            val capitalChars = "BCDFGHJKLMPRSTVWXYZ"
-
             val vowelAArray = Array(1) { KnowCase("a", "H") }
+
+            val normalChars = "bcdefghijklmnopqrstuvwxyz"
+            val normalCharsArray = fillList(25, KnowCase("a", "H"), normalChars)
+
+            val listTexts = Array(19) { KnowCase("a", "H") }
+            val capitalChars = "BCDFGHJKLMPRSTVWXYZ"
 
             var generalIndex = 0
 
-            normalChars.toCharArray().forEachIndexed { index, element ->
-                listTexts[index] = KnowCase(element.toString(), element.toString())
-            }
-
-            generalIndex += normalChars.length
+            generalIndex += normalCharsArray.size
 
             capitalChars.toCharArray().forEachIndexed { index, element ->
                 listTexts[generalIndex+index] = KnowCase(element.toString().toLowerCase()+'a', element.toString())
             }
 
-            return vowelAArray+listTexts
+            return vowelAArray + normalCharsArray + listTexts
         }
 
     }

@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import diphendara.antiguo.translator.R
-import java.lang.Exception
 
 abstract class CustomFragment: Fragment()
 {
