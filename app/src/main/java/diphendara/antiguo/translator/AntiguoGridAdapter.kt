@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import diphendara.antiguo.translator.dataObjects.KnowCase
 import diphendara.antiguo.translator.parsers.Antiguo2Text
@@ -15,6 +16,7 @@ class AntiguoGridAdapter(
     private val context: Context,
     private val gridValues: Array<KnowCase>,
     private val type: String?,
+    private val eraseButton: ImageButton,
     private val antiguoTextView: TextView,
     private val textTextView: TextView
     ) : BaseAdapter() {
@@ -51,12 +53,11 @@ class AntiguoGridAdapter(
             buttonTextTextView.text = gridValues[position].value
 
             button.setOnClickListener{
-                antiguoTextView.append(gridValues[position].value)
-                if("string" == type) {
-                    textTextView.text = Antiguo2Text.parseText(antiguoTextView.text.toString())
-                } else {
-                    textTextView.text = ParseNumber.parseNumber(antiguoTextView.text.toString(), 10)
-                }
+                setTextInViews(antiguoTextView.text.toString()+gridValues[position].value)
+            }
+
+            eraseButton.setOnClickListener{
+                setTextInViews(antiguoTextView.text.substring(0, antiguoTextView.text.length-1))
             }
 
         } else {
@@ -64,5 +65,15 @@ class AntiguoGridAdapter(
         }
 
         return gridView
+    }
+
+    private fun setTextInViews(antiguoValue: String)
+    {
+        antiguoTextView.text = antiguoValue
+        if("string" == type) {
+            textTextView.text = Antiguo2Text.parseText(antiguoValue)
+        } else {
+            textTextView.text = ParseNumber.parseNumber(antiguoValue, 10)
+        }
     }
 }

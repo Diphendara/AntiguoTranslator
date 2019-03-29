@@ -52,6 +52,7 @@ class MyPagerAdapter(fm: FragmentManager, private val context: Context) : Fragme
         arguments.putInt("fragmentGridView", R.id.simbolsGridView)
         arguments.putInt("antiguoTextView", R.id.antiguoTextView)
         arguments.putInt("textTextView", R.id.textTextView)
+        arguments.putInt("eraseButton", R.id.eraseButton2)
         arguments.putString("ToParse", "string")
 
         return arguments
@@ -64,6 +65,8 @@ class MyPagerAdapter(fm: FragmentManager, private val context: Context) : Fragme
         arguments.putInt("fragmentGridView", R.id.quinaryGridView)
         arguments.putInt("antiguoTextView", R.id.antiguoTextView3)
         arguments.putInt("textTextView", R.id.textTextView3)
+        arguments.putInt("eraseButton", R.id.eraseButton)
+
         arguments.putString("ToParse", "number")
 
         return arguments

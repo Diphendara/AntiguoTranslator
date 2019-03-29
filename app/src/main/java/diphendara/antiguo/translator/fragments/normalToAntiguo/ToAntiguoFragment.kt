@@ -36,6 +36,9 @@ class ToAntiguoFragment: CustomFragment()
                     }
 
                     textTextView!!.text = s.toString()
+                } else {
+                    antiguoTextView!!.text = ""
+                    textTextView!!.text = ""
                 }
             }
 
