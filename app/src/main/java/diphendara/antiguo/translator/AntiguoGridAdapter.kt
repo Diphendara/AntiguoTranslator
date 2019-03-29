@@ -57,7 +57,9 @@ class AntiguoGridAdapter(
             }
 
             eraseButton.setOnClickListener{
-                setTextInViews(antiguoTextView.text.substring(0, antiguoTextView.text.length-1))
+                if(antiguoTextView.text.isNotEmpty()) {
+                    setTextInViews(antiguoTextView.text.substring(0, antiguoTextView.text.length-1))
+                }
             }
 
         } else {
@@ -70,10 +72,14 @@ class AntiguoGridAdapter(
     private fun setTextInViews(antiguoValue: String)
     {
         antiguoTextView.text = antiguoValue
+        val numeric = antiguoValue.matches("[0-9]+".toRegex())
+
         if("string" == type) {
             textTextView.text = Antiguo2Text.parseText(antiguoValue)
-        } else {
+        } else if(numeric){
             textTextView.text = ParseNumber.parseNumber(antiguoValue, 10)
+        } else {
+            textTextView.text = ""
         }
     }
 }
